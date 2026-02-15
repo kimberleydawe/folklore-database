@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   
-  <link rel="stylesheet" href="https://kimbe.github.io/folklore-database/scss/main.min.eacc997ca9e40529348d2c2eeb5324ff46f0a03d70ba0adf42bc864c3542f0db.css" integrity="sha256-6syZfKnkBSk0jSwu61Mk/0bwoD1wugrfQryGTDVC8Ns=">
+  <link rel="stylesheet" href="https://kimbe.github.io/folklore-database/scss/main.min.4bad520654cc5ef149bfe7dfd9743324d6c46b34d8c9874fc82ecd5cf4d05dd3.css" integrity="sha256-S61SBlTMXvFJv&#43;ff2XQzJNbEazTYyYdPyC7NXPTQXdM=">
 
   
 </head>
@@ -25,11 +25,25 @@
   <header class="site-header" role="banner">
     <div class="site-header-inner">
       <a href="https://kimbe.github.io/folklore-database/" class="site-title">Folklore Database</a>
-      <nav class="site-nav" aria-label="Main">
-        <a href="https://kimbe.github.io/folklore-database/">Home</a>
-        <a href="https://kimbe.github.io/folklore-database/map/">Map</a>
-      </nav>
-      <button type="button" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
+      <div class="site-nav-wrap">
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-dropdown">
+          <span class="nav-toggle-inner" aria-hidden="true"></span>
+        </button>
+        <div class="nav-dropdown" id="nav-dropdown">
+          <nav class="site-nav" id="site-nav" aria-label="Main">
+            <a href="https://kimbe.github.io/folklore-database/">Home</a>
+            <a href="https://kimbe.github.io/folklore-database/map/">Map</a>
+          </nav>
+          <button type="button" class="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">
+            <span class="theme-icon theme-icon-sun" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            </span>
+            <span class="theme-icon theme-icon-moon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </span>
+          </button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -116,14 +130,39 @@
       var isDark = stored === 'dark' || (stored !== 'light' && prefersDark);
       document.body.classList.toggle('theme-dark', isDark);
       document.body.classList.toggle('theme-light', !isDark);
+      var t = document.querySelector('.theme-toggle');
+      if (t) {
+        t.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        t.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      }
     })();
     document.querySelector('.theme-toggle').addEventListener('click', function() {
       document.body.classList.toggle('theme-dark');
       document.body.classList.toggle('theme-light');
       var isDark = document.body.classList.contains('theme-dark');
       localStorage.setItem('folklore-theme', isDark ? 'dark' : 'light');
-      this.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Toggle dark mode');
+      this.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      this.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
     });
+    
+    (function() {
+      var toggle = document.getElementById('nav-toggle');
+      var dropdown = document.getElementById('nav-dropdown');
+      var nav = document.getElementById('site-nav');
+      if (!toggle || !dropdown) return;
+      function setOpen(open) {
+        document.body.classList.toggle('nav-open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
+      toggle.addEventListener('click', function() { setOpen(!document.body.classList.contains('nav-open')); });
+      if (nav) nav.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() { setOpen(false); });
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') setOpen(false);
+      });
+    })();
   </script>
 </body>
 </html>
