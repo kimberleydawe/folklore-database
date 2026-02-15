@@ -1,0 +1,67 @@
+{{ define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<article class="entry">
+  <header class="entry-header">
+    <p class="entry-meta">
+      <span class="entry-place">{{ .Params.place }}</span>{{ if .Params.county }} · <span class="entry-county">{{ .Params.county }}</span>{{ end }}{{ if .Params.region }} · <span class="entry-region">{{ .Params.region }}</span>{{ end }}
+    </p>
+    <h1 class="entry-title">{{ .Title }}</h1>
+    <div class="entry-tags">
+      {{ range .Params.tags }}
+      <a href="{{ with $.Site.GetPage "/map" }}{{ .Permalink }}{{ end }}?tags={{ . | urlquery }}" class="tag-chip">{{ . }}</a>
+      {{ end }}
+    </div>
+  </header>
+
+  <div class="entry-body">
+    {{ .Content }}
+  </div>
+
+  {{ if .Params.images }}
+  <section class="entry-gallery" aria-label="Images">
+    <div class="gallery-grid">
+      {{ range .Params.images }}
+      <figure class="gallery-item">
+        <img src="{{ .src }}" alt="{{ .alt | default "Image" }}" loading="lazy">
+        {{ if .caption }}<figcaption>{{ .caption }}</figcaption>{{ end }}
+      </figure>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ if .Params.sources }}
+  <section class="entry-sources" aria-labelledby="sources-heading">
+    <h2 id="sources-heading">Sources</h2>
+    <ul class="sources-list">
+      {{ range .Params.sources }}
+      <li>{{ . }}</li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+
+  <section class="entry-related" aria-labelledby="related-heading">
+    <h2 id="related-heading">Related places</h2>
+    <div id="related-places" class="related-places">
+      <p class="related-loading">Loading…</p>
+    </div>
+  </section>
+
+  <footer class="entry-footer">
+    <a href="{{ with .Site.GetPage "/map" }}{{ .Permalink }}{{ else }}{{ "/map/" | relURL }}{{ end }}" class="back-link" id="back-to-map">← Back to map</a>
+  </footer>
+</article>
+
+<script>
+  window.FOLKLORE_ENTRY = {
+    slug: {{ .File.ContentBaseName | jsonify }},
+    tags: {{ .Params.tags | default (slice) | jsonify }},
+    base: {{ .Site.BaseURL | jsonify }},
+    indexUrl: "{{ with .Site.GetPage "/map" }}{{ (print .Permalink "index.json") | safeJS }}{{ else }}{{ "/map/index.json" | relURL | safeJS }}{{ end }}"
+  };
+</script>
+{{ $entryJs := resources.Get "js/entry.js" | js.Build (dict "minify" true "target" "es2020") | fingerprint }}
+<script src="{{ $entryJs.RelPermalink }}" defer></script>
+{{ end }}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta name="generator" content="Hugo 0.104.2" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f0e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1915" media="(prefers-color-scheme: dark)">
+  <title>Folklore Database</title>
+  <meta name="description" content="A curated collection of folklore entries with an interactive map.">
+  <link rel="canonical" href="https://kimbe.github.io/folklore-database/">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="https://kimbe.github.io/folklore-database/scss/main.min.eacc997ca9e40529348d2c2eeb5324ff46f0a03d70ba0adf42bc864c3542f0db.css" integrity="sha256-6syZfKnkBSk0jSwu61Mk/0bwoD1wugrfQryGTDVC8Ns=">
+
+  
+</head>
+<body class="theme-light">
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="site-header-inner">
+      <a href="https://kimbe.github.io/folklore-database/" class="site-title">Folklore Database</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="https://kimbe.github.io/folklore-database/">Home</a>
+        <a href="https://kimbe.github.io/folklore-database/map/">Map</a>
+      </nav>
+      <button type="button" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
+    </div>
+  </header>
+
+  <main id="main" class="main" role="main">
+    
+<article class="home">
+  <header class="home-header">
+    <h1 class="home-title">Folklore Database</h1>
+    <p class="home-lead">A curated collection of folklore entries with an interactive map.</p>
+  </header>
+  <div class="home-actions">
+    <a href="https://kimbe.github.io/folklore-database/map/" class="btn btn-primary">Explore the map</a>
+  </div>
+</article>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer-inner">
+      <p>Folklore Database — static site built with Hugo. No backend.</p>
+    </div>
+  </footer>
+
+  
+
+  <script>
+    
+    (function() {
+      var stored = localStorage.getItem('folklore-theme');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = stored === 'dark' || (stored !== 'light' && prefersDark);
+      document.body.classList.toggle('theme-dark', isDark);
+      document.body.classList.toggle('theme-light', !isDark);
+    })();
+    document.querySelector('.theme-toggle').addEventListener('click', function() {
+      document.body.classList.toggle('theme-dark');
+      document.body.classList.toggle('theme-light');
+      var isDark = document.body.classList.contains('theme-dark');
+      localStorage.setItem('folklore-theme', isDark ? 'dark' : 'light');
+      this.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Toggle dark mode');
+    });
+  </script>
+</body>
+</html>

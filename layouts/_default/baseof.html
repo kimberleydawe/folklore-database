@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang | default "en" }}" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f0e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1915" media="(prefers-color-scheme: dark)">
+  <title>{{ block "title" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ .Param "description" | default .Site.Params.description }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  <!-- Typography: EB Garamond (headings), Inter (body/UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  {{ $styles := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
+
+  {{ block "head" . }}{{ end }}
+</head>
+<body class="theme-light">
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="site-header-inner">
+      <a href="{{ "/" | relURL }}" class="site-title">{{ .Site.Title }}</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="{{ "/" | relURL }}">Home</a>
+        <a href="{{ with .Site.GetPage "/map" }}{{ .Permalink }}{{ else }}{{ "/map/" | relURL }}{{ end }}">Map</a>
+      </nav>
+      <button type="button" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
+    </div>
+  </header>
+
+  <main id="main" class="main" role="main">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer-inner">
+      <p>{{ .Site.Title }} — static site built with Hugo. No backend.</p>
+    </div>
+  </footer>
+
+  {{ block "scripts" . }}{{ end }}
+
+  <script>
+    // Dark mode: respect prefers-color-scheme on first load, then localStorage
+    (function() {
+      var stored = localStorage.getItem('folklore-theme');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = stored === 'dark' || (stored !== 'light' && prefersDark);
+      document.body.classList.toggle('theme-dark', isDark);
+      document.body.classList.toggle('theme-light', !isDark);
+    })();
+    document.querySelector('.theme-toggle').addEventListener('click', function() {
+      document.body.classList.toggle('theme-dark');
+      document.body.classList.toggle('theme-light');
+      var isDark = document.body.classList.contains('theme-dark');
+      localStorage.setItem('folklore-theme', isDark ? 'dark' : 'light');
+      this.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Toggle dark mode');
+    });
+  </script>
+</body>
+</html>

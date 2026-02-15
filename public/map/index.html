@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f0e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1915" media="(prefers-color-scheme: dark)">
+  <title>Map | Folklore Database</title>
+  <meta name="description" content="A curated collection of folklore entries with an interactive map.">
+  <link rel="canonical" href="https://kimbe.github.io/folklore-database/map/">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="https://kimbe.github.io/folklore-database/scss/main.min.eacc997ca9e40529348d2c2eeb5324ff46f0a03d70ba0adf42bc864c3542f0db.css" integrity="sha256-6syZfKnkBSk0jSwu61Mk/0bwoD1wugrfQryGTDVC8Ns=">
+
+  
+</head>
+<body class="theme-light">
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="site-header-inner">
+      <a href="https://kimbe.github.io/folklore-database/" class="site-title">Folklore Database</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="https://kimbe.github.io/folklore-database/">Home</a>
+        <a href="https://kimbe.github.io/folklore-database/map/">Map</a>
+      </nav>
+      <button type="button" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
+    </div>
+  </header>
+
+  <main id="main" class="main" role="main">
+    
+<div class="map-page" id="map-page">
+  <div class="map-container">
+    <div class="map-card" role="region" aria-label="Interactive map of folklore entries">
+      <div id="map" class="map-inner"></div>
+    </div>
+  </div>
+
+  <aside class="results-panel" id="results-panel" aria-label="Search and filter results">
+    <button type="button" class="results-panel-toggle" id="panel-toggle" aria-expanded="false" aria-controls="results-panel-content">
+      <span class="toggle-label">Show filters & results</span>
+    </button>
+    <div class="results-panel-content" id="results-panel-content">
+      <div class="filters">
+        <label for="search-input" class="visually-hidden">Search by title, place, county, region, or tags</label>
+        <input type="search" id="search-input" class="search-input" placeholder="Search title, place, county, region, tags…" autocomplete="off" aria-describedby="search-hint">
+        <span id="search-hint" class="visually-hidden">Results update as you type.</span>
+
+        <div class="tag-chips-wrap" role="group" aria-label="Filter by tags">
+          <span class="tag-chips-label">Tags</span>
+          <div id="tag-chips" class="tag-chips"></div>
+        </div>
+
+        <button type="button" id="clear-filters" class="btn btn-secondary clear-filters" aria-label="Clear all filters">Clear filters</button>
+      </div>
+
+      <div class="results-wrap">
+        <h2 class="results-heading">Results</h2>
+        <ul id="results-list" class="results-list" role="list" aria-label="Folklore entries matching current filters"></ul>
+        <p id="results-empty" class="results-empty" aria-live="polite" hidden>No entries match your filters.</p>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+  window.FOLKLORE_MAP_BASE = "https:\/\/kimbe.github.io\/folklore-database\/";
+  window.FOLKLORE_MAP_INDEX_URL = "https:\/\/kimbe.github.io\/folklore-database\/map\/index.json";
+</script>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer-inner">
+      <p>Folklore Database — static site built with Hugo. No backend.</p>
+    </div>
+  </footer>
+
+  
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin="">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin="" defer></script>
+
+<script src="https://kimbe.github.io/folklore-database/js/map.e4eda4e8b2a334f4a68630b42e201f15613553016b1d78ca071f6b0850373ac9.js" defer></script>
+
+
+  <script>
+    
+    (function() {
+      var stored = localStorage.getItem('folklore-theme');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = stored === 'dark' || (stored !== 'light' && prefersDark);
+      document.body.classList.toggle('theme-dark', isDark);
+      document.body.classList.toggle('theme-light', !isDark);
+    })();
+    document.querySelector('.theme-toggle').addEventListener('click', function() {
+      document.body.classList.toggle('theme-dark');
+      document.body.classList.toggle('theme-light');
+      var isDark = document.body.classList.contains('theme-dark');
+      localStorage.setItem('folklore-theme', isDark ? 'dark' : 'light');
+      this.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Toggle dark mode');
+    });
+  </script>
+</body>
+</html>

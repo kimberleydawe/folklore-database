@@ -1,0 +1,73 @@
+[{
+    "title": "Hungry Grass on the Nephin Road",
+    "url": "https://kimbe.github.io/folklore-database/map/hungry-grass-mayo/",
+    "lat": 54.0833,
+    "lng": -9.6833,
+    "place": "Nephin",
+    "county": "Mayo",
+    "region": "Connacht",
+    "tags": ["hungry-grass","famine","Mayo","Connacht","superstition"]
+  },{
+    "title": "St Brigid's Well, Kildare",
+    "url": "https://kimbe.github.io/folklore-database/map/st-brigid-kildare/",
+    "lat": 53.1561,
+    "lng": -6.9114,
+    "place": "Kildare",
+    "county": "Kildare",
+    "region": "Leinster",
+    "tags": ["holy-well","pilgrimage","Brigid","Kildare","Leinster"]
+  },{
+    "title": "The Banshee of Killarney",
+    "url": "https://kimbe.github.io/folklore-database/map/banshee-killarney/",
+    "lat": 52.0614,
+    "lng": -9.5026,
+    "place": "Killarney",
+    "county": "Kerry",
+    "region": "Munster",
+    "tags": ["banshee","death-omen","Kerry","Munster"]
+  },{
+    "title": "The Fairy Fort at Ballincollig",
+    "url": "https://kimbe.github.io/folklore-database/map/fairy-fort-cork/",
+    "lat": 51.8864,
+    "lng": -8.5843,
+    "place": "Ballincollig",
+    "county": "Cork",
+    "region": "Munster",
+    "tags": ["fairies","rath","Cork","Munster"]
+  },{
+    "title": "The Headless Coach of Howth",
+    "url": "https://kimbe.github.io/folklore-database/map/headless-coach-dublin/",
+    "lat": 53.3894,
+    "lng": -6.0653,
+    "place": "Howth",
+    "county": "Dublin",
+    "region": "Leinster",
+    "tags": ["ghost","coach","Dublin","Leinster","death-omen"]
+  },{
+    "title": "The Púca of Glenmalure",
+    "url": "https://kimbe.github.io/folklore-database/map/puca-wicklow/",
+    "lat": 52.9667,
+    "lng": -6.3833,
+    "place": "Glenmalure",
+    "county": "Wicklow",
+    "region": "Leinster",
+    "tags": ["púca","shape-shifter","Wicklow","Leinster"]
+  },{
+    "title": "The Selkie of Tory Island",
+    "url": "https://kimbe.github.io/folklore-database/map/selkie-donegal/",
+    "lat": 55.2667,
+    "lng": -8.2333,
+    "place": "Tory Island",
+    "county": "Donegal",
+    "region": "Ulster",
+    "tags": ["selkie","seal","Donegal","Ulster","sea"]
+  },{
+    "title": "Will-o'-the-Wisp in the Bog of Cloon",
+    "url": "https://kimbe.github.io/folklore-database/map/will-o-wisp-galway/",
+    "lat": 53.3833,
+    "lng": -8.95,
+    "place": "Cloon",
+    "county": "Galway",
+    "region": "Connacht",
+    "tags": ["will-o-the-wisp","bog","Galway","Connacht","superstition"]
+  }]

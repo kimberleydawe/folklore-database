@@ -1,0 +1,13 @@
+{{ define "title" }}{{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<article class="home">
+  <header class="home-header">
+    <h1 class="home-title">{{ .Site.Title }}</h1>
+    <p class="home-lead">{{ .Param "description" | default "A curated collection of folklore entries with an interactive map." }}</p>
+  </header>
+  <div class="home-actions">
+    <a href="{{ with .Site.GetPage "/map" }}{{ .Permalink }}{{ else }}{{ "/map/" | relURL }}{{ end }}" class="btn btn-primary">Explore the map</a>
+  </div>
+</article>
+{{ end }}

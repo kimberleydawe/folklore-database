@@ -1,0 +1,16 @@
+[
+  {{- $pages := where .Pages "Params.draft" "!=" true -}}
+  {{- $len := len $pages -}}
+  {{- range $i, $p := $pages -}}
+  {
+    "title": {{ $p.Title | jsonify }},
+    "url": {{ $p.Permalink | jsonify }},
+    "lat": {{ $p.Params.lat | jsonify }},
+    "lng": {{ $p.Params.lng | jsonify }},
+    "place": {{ $p.Params.place | default "" | jsonify }},
+    "county": {{ $p.Params.county | default "" | jsonify }},
+    "region": {{ $p.Params.region | default "" | jsonify }},
+    "tags": {{ $p.Params.tags | default (slice) | jsonify }}
+  }{{ if lt (add $i 1) $len }},{{ end }}
+  {{- end -}}
+]

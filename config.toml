@@ -1,0 +1,44 @@
+baseURL = "https://kimbe.github.io/folklore-database/"
+title = "Folklore Database"
+canonifyURLs = true
+
+# For GitHub Pages at repo root: use baseURL = "/folklore-database/" (replace folklore-database with your repo name)
+# For user/org site at username.github.io: use baseURL = "/"
+
+[params]
+  description = "A curated collection of folklore entries with an interactive map."
+  # Dark mode is toggled client-side; default follows prefers-color-scheme
+
+disableKinds = ["taxonomy", "term"]
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "JSON"]
+
+[outputFormats.JSON]
+  baseName = "index"
+  mediaType = "application/json"
+  # Map section uses outputs: ["HTML", "JSON"] in content/map/_index.md; list.json.json emits index.json
+
+[minify]
+  disableCSS = false
+  disableHTML = false
+  disableJS = false
+  disableJSON = false
+  disableSVG = false
+  disableXML = false
+  minifyOutput = false
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineAnchors = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = false
+    style = "monokai"
+    tabWidth = 4
